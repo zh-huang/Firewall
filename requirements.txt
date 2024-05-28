@@ -1,0 +1,4 @@
+psutil==5.9.8
+PyQt5==5.15.10
+scapy==2.4.3
+setuptools==45.2.0

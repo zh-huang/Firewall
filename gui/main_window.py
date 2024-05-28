@@ -2,6 +2,8 @@ from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QMainWindow, QVBoxLayout, QWidget, QTabWidget, QTableWidget
 from backend import IptablesManager
 from .rule_widget import RuleWidget
+from .app_widget import AppWidget
+from .log_widget import LogWidget
 from .monitor_widget import MonitorWidget
 
 class MainWindow(QtWidgets.QMainWindow):
@@ -11,14 +13,14 @@ class MainWindow(QtWidgets.QMainWindow):
         self.iptables_manager = IptablesManager()
 
     def initUI(self):
-        self.setWindowTitle('My Firewall')
+        self.setWindowTitle('My Firewall - 2153689')
         self.setGeometry(100, 100, 800, 600)
         
         layout = QVBoxLayout()
         self.tabs = QTabWidget()
         self.tabs.addTab(RuleWidget(), "Rule")
-        self.tabs.addTab(RuleWidget(), "App")
-        self.tabs.addTab(RuleWidget(), "Log")
+        self.tabs.addTab(AppWidget(), "App")
+        self.tabs.addTab(LogWidget(), "Log")
         self.tabs.addTab(MonitorWidget(), "Monitor")
         layout.addWidget(self.tabs)
 

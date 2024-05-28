@@ -1,0 +1,6 @@
+Package: myfirewall
+Version: 0.3.0
+Architecture: all
+Maintainer: Huang Zehua <huangzh84@outlook.com>
+Homepage: https://github.com/zh-huang/Firewall
+Description: Firewall application design and development. 2024 project.
