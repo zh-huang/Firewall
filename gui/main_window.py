@@ -1,5 +1,8 @@
 from PyQt5 import QtWidgets
-from backend.iptables_manager import IptablesManager
+from PyQt5.QtWidgets import QMainWindow, QVBoxLayout, QWidget, QTabWidget, QTableWidget
+from backend import IptablesManager
+from .rule_widget import RuleWidget
+from .monitor_widget import MonitorWidget
 
 class MainWindow(QtWidgets.QMainWindow):
     def __init__(self):
@@ -8,33 +11,18 @@ class MainWindow(QtWidgets.QMainWindow):
         self.iptables_manager = IptablesManager()
 
     def initUI(self):
-        self.setWindowTitle('Firewall Tool')
+        self.setWindowTitle('My Firewall')
         self.setGeometry(100, 100, 800, 600)
+        
+        layout = QVBoxLayout()
+        self.tabs = QTabWidget()
+        self.tabs.addTab(RuleWidget(), "Rule")
+        self.tabs.addTab(RuleWidget(), "App")
+        self.tabs.addTab(RuleWidget(), "Log")
+        self.tabs.addTab(MonitorWidget(), "Monitor")
+        layout.addWidget(self.tabs)
 
-        self.addButton = QtWidgets.QPushButton('Add Rule', self)
-        self.addButton.clicked.connect(self.addRule)
-        self.deleteButton = QtWidgets.QPushButton('Delete Rule', self)
-        self.deleteButton.clicked.connect(self.deleteRule)
-        self.saveButton = QtWidgets.QPushButton('Save Rules', self)
-        self.saveButton.clicked.connect(self.saveRules)
-
-        self.layout = QtWidgets.QVBoxLayout()
-        self.layout.addWidget(self.addButton)
-        self.layout.addWidget(self.deleteButton)
-        self.layout.addWidget(self.saveButton)
-
-        self.centralWidget = QtWidgets.QWidget()
-        self.centralWidget.setLayout(self.layout)
-        self.setCentralWidget(self.centralWidget)
-
-    def addRule(self):
-        # 添加防火墙规则的逻辑
-        pass
-
-    def deleteRule(self):
-        # 删除防火墙规则的逻辑
-        pass
-
-    def saveRules(self):
-        # 保存防火墙规则的逻辑
-        pass
+        central_widget = QWidget()
+        central_widget.setLayout(layout)
+        self.setCentralWidget(central_widget)
+    
